@@ -11,31 +11,43 @@ import {
 import PropTypes from 'prop-types';
 import { imgAvatar } from '../../utils/contants';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../redux/userSlice';
 
 function EditPage({ setIsEdit }) {
-  const [name, setUserName] = useState('Emi Fukuda');
-  const [age, setAge] = useState(25);
-  const [desc, setDesc] = useState('Iam a intern devs font-end');
-  // eslint-disable-next-line no-unused-vars
-  const [avatar, setAvatar] = useState(
-    'https://pbs.twimg.com/media/ECMYzEBWkAExhme.jpg'
-  );
-
+  const userInfo = useSelector((state) => state?.user);
+  const dispatch = useDispatch();
   const handleClose = () => setIsEdit(false);
+
+  const [name, setUserName] = useState(userInfo.name);
+  const [age, setAge] = useState(userInfo.age);
+  const [desc, setDesc] = useState(userInfo.desc);
+  const [avatar, setAvatar] = useState(userInfo.avatar);
+
+  const handleClickImg = (e) => {
+    setAvatar(e.target.src);
+    e.target.classList.toggle('choose');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateUser({ name, age, desc, avatar }));
+    handleClose();
+  };
+
   return (
     <>
       <div className='grap'>
         <Card.Title as='h3' className='mb-3 text-center'>
           Update Profile👩👩
         </Card.Title>
-        <Form className='w-100'>
+        <Form className='w-100' onSubmit={handleSubmit}>
           <Form.Group className='mb-3' controlId='name'>
             <Form.Label>Username</Form.Label>
             <Form.Control
               name='name'
               type='text'
               placeholder='Enter your text...'
-              autoFocus
               value={name}
               onChange={(e) => setUserName(e.target.value)}
             />
@@ -46,7 +58,6 @@ function EditPage({ setIsEdit }) {
               name='age'
               type='text'
               placeholder='Enter your age, eg: 20, ...'
-              autoFocus
               value={age}
               onChange={(e) => setAge(e.target.value)}
             />
@@ -61,7 +72,7 @@ function EditPage({ setIsEdit }) {
               onChange={(e) => setDesc(e.target.value)}
             />
           </Form.Group>
-          <Stack direction='horizontal' gap={3}>
+          <Stack direction='horizontal' gap={3} className='mb-3'>
             <Button
               onClick={handleClose}
               variant='warning'
@@ -74,22 +85,22 @@ function EditPage({ setIsEdit }) {
               Save
             </Button>
           </Stack>
+          <Container>
+            <Row>
+              {imgAvatar.map((image, index) => (
+                <Col key={index} xs={12} md={6} lg={4} className='text-center'>
+                  <Image
+                    onClick={handleClickImg}
+                    src={image.url}
+                    rounded
+                    className='edit-ava my-3'
+                  />
+                </Col>
+              ))}
+            </Row>
+          </Container>
         </Form>
       </div>
-      <Container>
-        <Row>
-          {imgAvatar.map((image, index) => (
-            <Col key={index} xs={12} md={6} lg={4} className='text-center'>
-              <Image
-                onClick={(e) => setAvatar(e.target?.src)}
-                src={image.url}
-                rounded
-                className='edit-ava my-3'
-              />
-            </Col>
-          ))}
-        </Row>
-      </Container>
     </>
   );
 }

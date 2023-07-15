@@ -1,7 +1,10 @@
 import { Button, Card, Image } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 const Header = ({ setEdit }) => {
+  const { name, age, desc, avatar } = useSelector((state) => state?.user);
+
   const handleEdit = () => {
     setEdit(true);
   };
@@ -16,14 +19,10 @@ const Header = ({ setEdit }) => {
         <Button onClick={handleEdit} variant='info' className='info-edit'>
           Edit
         </Button>
-        <Image
-          src='https://pbs.twimg.com/media/ECMYzEBWkAExhme.jpg'
-          rounded
-          className='info-ava'
-        />
-        <Card.Title className='info-name'>👩 Emi Fukuda</Card.Title>
-        <Card.Text>👱‍♀️ 25</Card.Text>
-        <Card.Text>💼 Iam a intern devs font-end</Card.Text>
+        <Image src={avatar} rounded className='info-ava' />
+        <Card.Title className='info-name'>👩 {name}</Card.Title>
+        <Card.Text>👱‍♀️ {age}</Card.Text>
+        <Card.Text>💼 {desc}</Card.Text>
       </section>
     </header>
   );

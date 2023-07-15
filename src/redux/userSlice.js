@@ -5,7 +5,7 @@ const userSlice = createSlice({
   initialState: {
     name: 'Emi Fukuda',
     age: 25,
-    desc: 'Im am a intern des Font-end',
+    desc: 'I am a intern devs Font-end',
     avatar: 'https://pbs.twimg.com/media/ECMYzEBWkAExhme.jpg',
   },
   reducers: {
