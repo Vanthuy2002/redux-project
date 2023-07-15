@@ -1,6 +1,10 @@
 import { Button, Card, Image } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
-const Header = () => {
+const Header = ({ setEdit }) => {
+  const handleEdit = () => {
+    setEdit(true);
+  };
   return (
     <header
       style={{
@@ -9,7 +13,7 @@ const Header = () => {
       }}
     >
       <section className='info-container'>
-        <Button variant='info' className='info-edit'>
+        <Button onClick={handleEdit} variant='info' className='info-edit'>
           Edit
         </Button>
         <Image
@@ -23,6 +27,10 @@ const Header = () => {
       </section>
     </header>
   );
+};
+
+Header.propTypes = {
+  setEdit: PropTypes.func,
 };
 
 export default Header;
