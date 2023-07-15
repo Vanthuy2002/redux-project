@@ -1,6 +1,6 @@
 import { updateErr, updateSuccess, updating } from './userSlice';
 
-const callApiGetUser = async (payload, dispatch) => {
+const callApiGetUser = (payload, dispatch) => {
   dispatch(updating());
   try {
     dispatch(updateSuccess(payload));
