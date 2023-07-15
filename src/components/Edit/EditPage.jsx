@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { imgAvatar } from '../../utils/contants';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../redux/userSlice';
+import { callApiGetUser } from '../../redux/apiReq';
 
 function EditPage({ setIsEdit }) {
   const userInfo = useSelector((state) => state?.user);
@@ -31,7 +31,8 @@ function EditPage({ setIsEdit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateUser({ name, age, desc, avatar }));
+    const user = { name, age, desc, avatar };
+    callApiGetUser(user, dispatch);
     handleClose();
   };
 
