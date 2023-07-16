@@ -1,18 +1,18 @@
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Image,
-  Row,
-  Stack,
-} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { imgAvatar } from '../../utils/contants';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { imgAvatar } from '../../utils/contants';
 import { callApiGetUser } from '../../redux/apiReq';
+import {
+  Stack,
+  Row,
+  Image,
+  Form,
+  Container,
+  Col,
+  Card,
+  Button,
+} from 'react-bootstrap';
 
 function EditPage({ setIsEdit }) {
   const userInfo = useSelector((state) => state?.user);

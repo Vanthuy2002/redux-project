@@ -1,6 +1,6 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userSlice from './userSlice';
 import hobbySlice from './hobbySlice';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 const reducer = combineReducers({
   user: userSlice,
