@@ -1,8 +1,13 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Hobby from './components/Hobby/Hobby';
 
 function App() {
-  return <main className='main'></main>;
+  return (
+    <main className='main'>
+      <Hobby />
+    </main>
+  );
 }
 
 export default App;
