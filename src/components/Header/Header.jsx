@@ -23,7 +23,7 @@ const Header = ({ setEdit }) => {
         </Stack>
       ) : (
         <section className='info-container'>
-          <Button onClick={handleEdit} variant='info' className='info-edit'>
+          <Button onClick={handleEdit} variant='success' className='info-edit'>
             Edit
           </Button>
           <Image src={avatar} rounded className='info-ava' />
